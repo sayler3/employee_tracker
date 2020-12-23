@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
+const figlet = require('figlet');
 
 //Starting connection to mysql
 const connection = mysql.createConnection({
