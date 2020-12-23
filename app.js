@@ -12,7 +12,14 @@ const connection = mysql.createConnection({
 });
 
 connection.connect((err) => {
-	if (err) throw err;
+    if (err) throw err;
+    console.log(figlet.textSync('Employee Manager', {
+        font: 'Standard',
+        horizontalLayout: 'default',
+        verticalLayout: 'default',
+        width: 60,
+        whitespaceBreak: true
+    }));
 	startProgram();
 });
 
