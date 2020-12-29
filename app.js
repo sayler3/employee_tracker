@@ -1,6 +1,7 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const figlet = require('figlet');
+const { viewAllEmployees } = require('./js/view');
 
 //Starting connection to mysql
 const connection = mysql.createConnection({
@@ -43,7 +44,7 @@ const startProgram = () => {
         console.log(action);
         switch (action) {
             case 'View all employees':
-                
+                viewAllEmployees();
                 break;
             case 'View all roles':
                 
@@ -70,3 +71,11 @@ const startProgram = () => {
         }
     });
 };
+
+// const viewAllEmployees = () => {
+//     connection.query('SELECT * FROM employee', (err, results) => {
+//         if (err) throw err;
+//         console.table(results)
+//         startProgram();
+//     });
+// };
