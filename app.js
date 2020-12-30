@@ -50,10 +50,14 @@ const startProgram = () => {
                 });
                 break;
             case 'View all roles':
-                
+                view.viewAllRoles(() => {
+                    startProgram();
+                });
                 break;
             case 'View all departments':
-                
+                view.viewAllDepartments(() => {
+                    startProgram();
+                });
                 break;
             case 'Add department':
                 
@@ -74,11 +78,3 @@ const startProgram = () => {
         }
     });
 };
-
-// const viewAllEmployees = () => {
-//     connection.query('SELECT * FROM employee', (err, results) => {
-//         if (err) throw err;
-//         console.table(results)
-//         startProgram();
-//     });
-// };
