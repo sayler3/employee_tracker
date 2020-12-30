@@ -30,4 +30,36 @@ module.exports = {
 				);
 			});
 	},
+
+	addRole: function (title, salary, DI, callBack) {
+		inquirer
+			.prompt([
+				{
+					name: "title",
+					type: "input",
+					message: "What is the title of the new role ?",
+				},
+				{
+					name: "salary",
+					type: "number",
+					message: "What is the new salary of the new role ?",
+				},
+				{
+					name: "departmentId",
+					type: "input",
+					message: "Department Id for new role ?",
+				}
+            ])
+			.then((answers) => {
+				connection.query(
+					"INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?);",
+					[answers.title, answers.salary, answers.departmentId],
+					(err, res) => {
+						if (err) throw err;
+						console.log("role has been added to database! \n");
+						callBack(res);
+					}
+				);
+			});
+	},
 };
