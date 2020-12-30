@@ -3,6 +3,7 @@ const inquirer = require("inquirer");
 const figlet = require('figlet');
 const cTable = require('console.table');
 const view = require('./js/view');
+const add = require('./js/add');
 
 //Starting connection to mysql
 const connection = mysql.createConnection({
