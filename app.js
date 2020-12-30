@@ -61,7 +61,9 @@ const startProgram = () => {
                 });
                 break;
             case 'Add department':
-                
+                add.addDepartment(() => {
+                    startProgram();
+                });
                 break;
             case 'Add role':
                 
