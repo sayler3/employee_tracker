@@ -14,7 +14,7 @@ module.exports = {
         connection.query('SELECT * FROM employee', (err, results) => {
             if (err) throw err;
             console.table(results)
-            callBack();
+            callBack(results);
         });
     },
 
@@ -22,7 +22,7 @@ module.exports = {
         connection.query('SELECT * FROM role', (err, results) => {
             if (err) throw err;
             console.table(results)
-            callBack();
+            callBack(results);
         });
     },
 
@@ -30,7 +30,7 @@ module.exports = {
         connection.query('SELECT * FROM department', (err, results) => {
             if (err) throw err;
             console.table(results)
-            callBack();
+            callBack(results);
         });
     }
 }
