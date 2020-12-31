@@ -12,13 +12,13 @@ const connection = mysql.createConnection({
 
 module.exports = {
 	addDepartment: function (newDept, callBack) {
-		inquirer
-			.prompt({
-				name: "newDept",
-				type: "input",
-				message: "What is the name of the department you would like to add?",
-			})
-			.then(({ newDept }) => {
+		// inquirer
+		// 	.prompt({
+		// 		name: "newDept",
+		// 		type: "input",
+		// 		message: "What is the name of the department you would like to add?",
+		// 	})
+		// 	.then(({ newDept }) => {
 				connection.query(
 					"INSERT INTO department (name) VALUES (?);",
 					newDept,
@@ -28,7 +28,7 @@ module.exports = {
 						callBack(res);
 					}
 				);
-			});
+			// });
 	},
 
 	addRole: function (title, salary, DI, callBack) {

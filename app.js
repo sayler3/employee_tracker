@@ -61,9 +61,19 @@ const startProgram = () => {
                 });
                 break;
             case 'Add department':
-                add.addDepartment(() => {
-                    startProgram();
-                });
+                inquirer.prompt({
+                    name: 'newDept',
+                    type: 'input',
+                    message: 'What is the name of the department ?',
+                })
+                .then(({newDept}) => {
+                    add.addDepartment(newDept, () => {
+                        startProgram();
+                    })
+                })
+                // add.addDepartment(() => {
+                //     startProgram();
+                // });
                 break;
             case 'Add role':
                 add.addRole(() => {
