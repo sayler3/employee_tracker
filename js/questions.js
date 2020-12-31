@@ -72,8 +72,8 @@ const questions = {
 			type: "rawlist",
 			choices() {
 				const choiceArray = [];
-				results.forEach(({ empoyee_name }) => {
-					choiceArray.push(empoyee_name);
+				results.forEach(({ first_name }) => {
+					choiceArray.push(first_name);
 				});
 				return choiceArray;
 			},

@@ -4,6 +4,7 @@ const figlet = require("figlet");
 const cTable = require("console.table");
 const view = require("./js/view");
 const add = require("./js/add");
+const update = require("./js/update");
 const questions = require("./js/questions");
 
 //Starting connection to mysql
@@ -81,11 +82,32 @@ const startProgram = () => {
 				});
 				break;
 			case "Update employee role":
-                view.viewAllEmployees(() => {
-                    inquirer.prompt(questions.updateEmpoyeeRole).then((answers) => {
-                        
-                    })
-                })
+				connection.query("SELECT * FROM employee", (err, results) => {
+                    if (err) throw err;
+					inquirer.prompt([
+						{
+							name: "selectEmployee",
+							type: "rawlist",
+							choices() {
+								const choiceArray = [];
+								results.forEach(({ first_name, last_name }) => {
+									choiceArray.push(first_name, last_name);
+								});
+								return choiceArray;
+							},
+							message: "Choose the employee whos role needs to be updated:",
+						},
+						{
+							name: "newRole",
+							type: "input",
+							message: "What is the new role for the selected empoyee ?",
+						},
+					]);
+				});
+				// update.listOfEmployees((results) => {
+				//     inquirer.prompt(results, questions.updateEmpoyeeRole)
+				//     // .then((answers) => {});
+				// });
 				break;
 			default:
 				connection.end();

@@ -9,5 +9,11 @@ const connection = mysql.createConnection({
 });
 
 module.exports = {
-    
+    listOfEmployees: function () {
+        connection.query('SELECT * FROM employee', (err, results) => {
+            if (err) throw err;
+            return results;
+            // callBack(results);
+        });
+    },
 }
