@@ -30,7 +30,7 @@ const questions = {
 		},
 		{
 			name: "departmentId",
-			type: "input",
+			type: "number",
 			message: "Department Id for new role ?",
 		},
 	],

@@ -10,46 +10,38 @@ const connection = mysql.createConnection({
 
 module.exports = {
 	addDepartment: function (newDept, callBack) {
-				connection.query(
-					"INSERT INTO department (name) VALUES (?);",
-					newDept,
-					(err, res) => {
-						if (err) throw err;
-						console.log("Department has been added! \n");
-						callBack(res);
-					}
-				);
+		connection.query(
+			"INSERT INTO department (name) VALUES (?);",
+			newDept,
+			(err, res) => {
+				if (err) throw err;
+				console.log("Department has been added! \n");
+				callBack(res);
+			}
+		);
 	},
 
 	addRole: function (title, salary, departmentId, callBack) {
-		// inquirer
-		// 	.prompt([
-		// 		{
-		// 			name: "title",
-		// 			type: "input",
-		// 			message: "What is the title of the new role ?",
-		// 		},
-		// 		{
-		// 			name: "salary",
-		// 			type: "number",
-		// 			message: "What is the new salary of the new role ?",
-		// 		},
-		// 		{
-		// 			name: "departmentId",
-		// 			type: "input",
-		// 			message: "Department Id for new role ?",
-		// 		}
-        //     ])
-		// 	.then((answers) => {
-				connection.query(
-					"INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?);",
-					[title, salary, departmentId],
-					(err, res) => {
-						if (err) throw err;
-						console.log("role has been added to database! \n");
-						callBack(res);
-					}
-				);
-			// });
+		connection.query(
+			"INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?);",
+			[title, salary, departmentId],
+			(err, res) => {
+				if (err) throw err;
+				console.log("role has been added to database! \n");
+				callBack(res);
+			}
+		);
+	},
+
+	addEmployee: function (firstName, lastName, roleId, managerId, callBack) {
+		connection.query(
+			"INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?);",
+			[firstName, lastName, roleId, managerId],
+			(err, res) => {
+				if (err) throw err;
+				console.log("A new employee has been added to the database! \n");
+				callBack(res);
+			}
+		);
 	},
 };

@@ -30,51 +30,62 @@ connection.connect((err) => {
 });
 
 const startProgram = () => {
-	inquirer.prompt(questions.startMenu)
-		.then(({ action }) => {
-			console.log(action);
-			switch (action) {
-				case "View all employees":
-					view.viewAllEmployees(() => {
+	inquirer.prompt(questions.startMenu).then(({ action }) => {
+		console.log(action);
+		switch (action) {
+			case "View all employees":
+				view.viewAllEmployees(() => {
+					startProgram();
+				});
+				break;
+			case "View all roles":
+				view.viewAllRoles(() => {
+					startProgram();
+				});
+				break;
+			case "View all departments":
+				view.viewAllDepartments(() => {
+					startProgram();
+				});
+				break;
+			case "Add department":
+				inquirer.prompt(questions.addDepartmentName).then(({ newDept }) => {
+					add.addDepartment(newDept, () => {
 						startProgram();
 					});
-					break;
-				case "View all roles":
-					view.viewAllRoles(() => {
-						startProgram();
-					});
-					break;
-				case "View all departments":
-					view.viewAllDepartments(() => {
-						startProgram();
-					});
-					break;
-				case "Add department":
-					inquirer
-						.prompt({
-							name: "newDept",
-							type: "input",
-							message: "What is the name of the department ?",
-						})
-						.then(({ newDept }) => {
-							add.addDepartment(newDept, () => {
-								startProgram();
-							});
-						});
-					break;
-				case "Add role":
-					add.addRole(() => {
-						startProgram();
-					});
-					break;
-				case "Add employee":
-					break;
-				case "Update employee role":
-					break;
-				default:
-					connection.end();
-					process.exit(0);
-					break;
-			}
-		});
+				});
+				break;
+			case "Add role":
+				inquirer.prompt(questions.addNewRole).then((answers) => {
+					add.addRole(
+						answers.title,
+						answers.salary,
+						answers.departmentId,
+						() => {
+							startProgram();
+						}
+					);
+				});
+				break;
+			case "Add employee":
+				inquirer.prompt(questions.addNewEmployee).then((answers) => {
+					add.addEmployee(
+						answers.firstName,
+						answers.lastName,
+						answers.roleId,
+						answers.managerId,
+						() => {
+							startProgram();
+						}
+					);
+				});
+				break;
+			case "Update employee role":
+				break;
+			default:
+				connection.end();
+				process.exit(0);
+				break;
+		}
+	});
 };
