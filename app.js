@@ -83,7 +83,7 @@ const startProgram = () => {
 				break;
 			case "Update employee role":
 				connection.query("SELECT * FROM employee", (err, results) => {
-                    if (err) throw err;
+					if (err) throw err;
 					inquirer.prompt([
 						{
 							name: "selectEmployee",
@@ -91,7 +91,7 @@ const startProgram = () => {
 							choices() {
 								const choiceArray = [];
 								results.forEach(({ first_name, last_name }) => {
-									choiceArray.push(first_name, last_name);
+									choiceArray.push(first_name+" "+last_name);
 								});
 								return choiceArray;
 							},
@@ -104,9 +104,10 @@ const startProgram = () => {
 						},
 					]);
 				});
-				// update.listOfEmployees((results) => {
-				//     inquirer.prompt(results, questions.updateEmpoyeeRole)
-				//     // .then((answers) => {});
+				// update.listOfEmployees(({ results }) => {
+				// 	inquirer
+				// 		.prompt(results, questions.updateEmpoyeeRole)
+				// 		.then((answers) => {});
 				// });
 				break;
 			default:
