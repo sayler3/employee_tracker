@@ -81,6 +81,11 @@ const startProgram = () => {
 				});
 				break;
 			case "Update employee role":
+                view.viewAllEmployees(() => {
+                    inquirer.prompt(questions.updateEmpoyeeRole).then((answers) => {
+                        
+                    })
+                })
 				break;
 			default:
 				connection.end();

@@ -65,6 +65,26 @@ const questions = {
 			message: "Enter manger ID, if none enter null:",
 		},
 	],
+
+	updateEmpoyeeRole: [
+		{
+			name: "selectEmployee",
+			type: "rawlist",
+			choices() {
+				const choiceArray = [];
+				results.forEach(({ empoyee_name }) => {
+					choiceArray.push(empoyee_name);
+				});
+				return choiceArray;
+			},
+			message: "Choose the employee whos role needs to be updated:",
+        },
+        {
+            name: 'newRole',
+            type: 'input',
+            message: 'What is the new role for the selected empoyee ?',
+        },
+	],
 };
 
 module.exports = questions;
