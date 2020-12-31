@@ -1,6 +1,4 @@
 const mysql = require("mysql");
-const inquirer = require("inquirer");
-const cTable = require("console.table");
 
 const connection = mysql.createConnection({
 	host: "localhost",
@@ -12,13 +10,6 @@ const connection = mysql.createConnection({
 
 module.exports = {
 	addDepartment: function (newDept, callBack) {
-		// inquirer
-		// 	.prompt({
-		// 		name: "newDept",
-		// 		type: "input",
-		// 		message: "What is the name of the department you would like to add?",
-		// 	})
-		// 	.then(({ newDept }) => {
 				connection.query(
 					"INSERT INTO department (name) VALUES (?);",
 					newDept,
@@ -28,38 +19,37 @@ module.exports = {
 						callBack(res);
 					}
 				);
-			// });
 	},
 
-	addRole: function (title, salary, DI, callBack) {
-		inquirer
-			.prompt([
-				{
-					name: "title",
-					type: "input",
-					message: "What is the title of the new role ?",
-				},
-				{
-					name: "salary",
-					type: "number",
-					message: "What is the new salary of the new role ?",
-				},
-				{
-					name: "departmentId",
-					type: "input",
-					message: "Department Id for new role ?",
-				}
-            ])
-			.then((answers) => {
+	addRole: function (title, salary, departmentId, callBack) {
+		// inquirer
+		// 	.prompt([
+		// 		{
+		// 			name: "title",
+		// 			type: "input",
+		// 			message: "What is the title of the new role ?",
+		// 		},
+		// 		{
+		// 			name: "salary",
+		// 			type: "number",
+		// 			message: "What is the new salary of the new role ?",
+		// 		},
+		// 		{
+		// 			name: "departmentId",
+		// 			type: "input",
+		// 			message: "Department Id for new role ?",
+		// 		}
+        //     ])
+		// 	.then((answers) => {
 				connection.query(
 					"INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?);",
-					[answers.title, answers.salary, answers.departmentId],
+					[title, salary, departmentId],
 					(err, res) => {
 						if (err) throw err;
 						console.log("role has been added to database! \n");
 						callBack(res);
 					}
 				);
-			});
+			// });
 	},
 };
