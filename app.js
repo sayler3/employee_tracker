@@ -30,22 +30,7 @@ connection.connect((err) => {
 });
 
 const startProgram = () => {
-	inquirer
-		.prompt({
-			name: "action",
-			type: "list",
-			message: "What would you like to do?",
-			choices: [
-				"View all employees",
-				"View all roles",
-				"View all departments",
-				"Add department",
-				"Add role",
-				"Add employee",
-				"Update employee role",
-				"EXIT",
-			],
-		})
+	inquirer.prompt(questions.startMenu)
 		.then(({ action }) => {
 			console.log(action);
 			switch (action) {
