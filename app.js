@@ -30,6 +30,31 @@ connection.connect((err) => {
 	startProgram();
 });
 
+// Varibles for arrays that hold data to be used later
+let listEmploy = [];
+let listRole = [];
+
+// Functions to get data for storage in varible
+const getEmployees = () => {
+	connection.query("SELECT * FROM employee;", (err, results) => {
+		if (err) throw err;
+		results.forEach(({ id, first_name, last_name, role_id, manager_id }) => {
+			listEmploy.push({ id, first_name, last_name, role_id, manager_id });
+		});
+	});
+};
+getEmployees();
+
+const getRoles = () => {
+	connection.query("SELECT * FROM role;", (err, results) => {
+		if (err) throw err;
+		results.forEach(({ id, title, salary, department_id }) => {
+			listRole.push({ id, title, salary, department_id });
+		});
+	});
+};
+getRoles();
+
 const startProgram = () => {
 	inquirer.prompt(questions.startMenu).then(({ action }) => {
 		console.log(action);
@@ -82,28 +107,34 @@ const startProgram = () => {
 				});
 				break;
 			case "Update employee role":
-				connection.query("SELECT * FROM employee", (err, results) => {
-					if (err) throw err;
-					inquirer.prompt([
-						{
-							name: "selectEmployee",
-							type: "list",
-							choices() {
-								const choiceArray = [];
-								results.forEach(({ role_id, first_name, last_name }) => {
-									choiceArray.push(role_id+" "+first_name+" "+last_name);
-								});
-								return choiceArray;
-							},
-							message: "Choose the employee whos role needs to be updated:",
-						},
-						{
-							name: "newRole",
-							type: "input",
-							message: "What is the new role for the selected empoyee ?",
-						},
-					]);
+				let eName = [];
+				let rName = [];
+				listEmploy.forEach(({ first_name, last_name }) => {
+					eName.push(first_name + " " + last_name);
 				});
+				listRole.forEach(({ title }) => {
+					rName.push(title);
+				});
+				// connection.query("SELECT * FROM employee;", (err, results) => {
+				// 	if (err) throw err;
+				inquirer.prompt([
+					{
+						name: "selectEmployee",
+						type: "rawlist",
+						choices: eName,
+						message: "Choose the employee whos role needs to be updated:",
+					},
+					{
+						name: "newRole",
+						type: "list",
+						choices: rName,
+						message: "What is the new role for the selected empoyee ?",
+					},
+				]);
+				// });
+				// .then((answer) => {
+
+				// })
 				// update.listOfEmployees(({ results }) => {
 				// 	inquirer
 				// 		.prompt(results, questions.updateEmpoyeeRole)
