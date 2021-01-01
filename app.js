@@ -108,15 +108,15 @@ const startProgram = () => {
 				break;
 			case "Update employee role":
 				let eName = [];
-				let rName = [];
+                let rName = [];
+                
 				listEmploy.forEach(({ first_name, last_name }) => {
 					eName.push(first_name + " " + last_name);
 				});
 				listRole.forEach(({ title }) => {
 					rName.push(title);
 				});
-				// connection.query("SELECT * FROM employee;", (err, results) => {
-				// 	if (err) throw err;
+				
 				inquirer.prompt([
 					{
 						name: "selectEmployee",
@@ -131,10 +131,6 @@ const startProgram = () => {
 						message: "What is the new role for the selected empoyee ?",
 					},
 				]);
-				// });
-				// .then((answer) => {
-
-				// })
 				// update.listOfEmployees(({ results }) => {
 				// 	inquirer
 				// 		.prompt(results, questions.updateEmpoyeeRole)
