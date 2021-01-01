@@ -87,11 +87,11 @@ const startProgram = () => {
 					inquirer.prompt([
 						{
 							name: "selectEmployee",
-							type: "rawlist",
+							type: "list",
 							choices() {
 								const choiceArray = [];
-								results.forEach(({ first_name, last_name }) => {
-									choiceArray.push(first_name+" "+last_name);
+								results.forEach(({ role_id, first_name, last_name }) => {
+									choiceArray.push(role_id+" "+first_name+" "+last_name);
 								});
 								return choiceArray;
 							},
