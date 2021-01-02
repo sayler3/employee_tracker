@@ -109,6 +109,7 @@ const startProgram = () => {
 				});
 				break;
 			case "Update employee role":
+				// Storing employee and role information to use for inquirer choices
 				let eName = [];
 				let rName = [];
 
@@ -135,6 +136,7 @@ const startProgram = () => {
 						},
 					])
 					.then((answers) => {
+						// Storing id's for later use
 						let employeeID = answers.selectEmployee.split(" ");
 						let eID = employeeID[0];
 						let roleId = answers.newRole.split(" ");
@@ -143,11 +145,6 @@ const startProgram = () => {
 							startProgram();
 						});
 					});
-				// update.listOfEmployees(({ results }) => {
-				// 	inquirer
-				// 		.prompt(results, questions.updateEmpoyeeRole)
-				// 		.then((answers) => {});
-				// });
 				break;
 			default:
 				connection.end();
