@@ -19,6 +19,7 @@ const connection = mysql.createConnection({
 connection.connect((err) => {
 	if (err) throw err;
 	console.log(
+		// Banner art for start of app
 		figlet.textSync("Employee Manager", {
 			font: "Standard",
 			horizontalLayout: "default",
@@ -55,6 +56,7 @@ const getRoles = () => {
 };
 getRoles();
 
+// Start of program run
 const startProgram = () => {
 	inquirer.prompt(questions.startMenu).then(({ action }) => {
 		console.log(action);
