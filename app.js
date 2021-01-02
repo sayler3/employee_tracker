@@ -110,29 +110,39 @@ const startProgram = () => {
 				break;
 			case "Update employee role":
 				let eName = [];
-                let rName = [];
-                
-				listEmploy.forEach(({ first_name, last_name }) => {
-					eName.push(first_name + " " + last_name);
+				let rName = [];
+
+				listEmploy.forEach(({ id, first_name, last_name }) => {
+					eName.push(id + " " + first_name + " " + last_name);
 				});
-				listRole.forEach(({ title }) => {
-					rName.push(title);
+				listRole.forEach(({ id, title }) => {
+					rName.push(id + " " + title);
 				});
-				
-				inquirer.prompt([
-					{
-						name: "selectEmployee",
-						type: "rawlist",
-						choices: eName,
-						message: "Choose the employee whos role needs to be updated:",
-					},
-					{
-						name: "newRole",
-						type: "list",
-						choices: rName,
-						message: "What is the new role for the selected empoyee ?",
-					},
-				]);
+
+				inquirer
+					.prompt([
+						{
+							name: "selectEmployee",
+							type: "list",
+							choices: eName,
+							message: "Choose the employee whos role needs to be updated:",
+						},
+						{
+							name: "newRole",
+							type: "list",
+							choices: rName,
+							message: "What is the new role for the selected empoyee ?",
+						},
+					])
+					.then((answers) => {
+						let employeeID = answers.selectEmployee.split(" ");
+						let eID = employeeID[0];
+						let roleId = answers.newRole.split(" ");
+						let rID = roleId[0];
+						update.UpdateRole(rID, eID, () => {
+							startProgram();
+						});
+					});
 				// update.listOfEmployees(({ results }) => {
 				// 	inquirer
 				// 		.prompt(results, questions.updateEmpoyeeRole)

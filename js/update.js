@@ -9,11 +9,12 @@ const connection = mysql.createConnection({
 });
 
 module.exports = {
-    listOfEmployees: function (callBack) {
-        connection.query('SELECT * FROM employee', (err, results) => {
+    UpdateRole: function (rID, eID, callBack) {
+        connection.query('UPDATE employee SET role_id = ? WHERE id = ?;', 
+        [rID, eID], (err, results) => {
             if (err) throw err;
-            // return results;
-            callBack(results);
+            console.log("New role has been updated!");
+            callBack(rID, eID, results);
         });
     },
 }
