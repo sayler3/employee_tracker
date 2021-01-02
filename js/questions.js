@@ -43,28 +43,30 @@ const questions = {
 		},
 	],
 
-	addNewEmployee: [
-		{
-			name: "firstName",
-			type: "input",
-			message: "Enter first name:",
-		},
-		{
-			name: "lastName",
-			type: "input",
-			message: "Enter last name:",
-		},
-		{
-			name: "roleId",
-			type: "number",
-			message: "Enter role ID:",
-		},
-		{
-			name: "mangerId",
-			type: "number",
-			message: "Enter manger ID, if none enter null:",
-		},
-	],
+	// addNewEmployee: [
+	// 	{
+	// 		name: "firstName",
+	// 		type: "input",
+	// 		message: "Enter first name:",
+	// 	},
+	// 	{
+	// 		name: "lastName",
+	// 		type: "input",
+	// 		message: "Enter last name:",
+	// 	},
+	// 	{
+	// 		name: "roleId",
+	// 		type: "list",
+	// 		choices: rTitle,
+	// 		message: "Select a role:",
+	// 	},
+	// 	{
+	// 		name: "mangerId",
+	// 		type: "list",
+	// 		choices: eManager,
+	// 		message: "Select a Manager",
+	// 	},
+	// ],
 
 	// updateEmpoyeeRole: [
 	// 	{

@@ -7,6 +7,7 @@ const add = require("./js/add");
 const update = require("./js/update");
 const questions = require("./js/questions");
 const { updateEmpRole } = require("./js/update");
+const { addEmp } = require("./js/add");
 
 //Starting connection to mysql
 const connection = mysql.createConnection({
@@ -97,16 +98,19 @@ const startProgram = () => {
 				});
 				break;
 			case "Add employee":
-				inquirer.prompt(questions.addNewEmployee).then((answers) => {
-					add.addEmployee(
-						answers.firstName,
-						answers.lastName,
-						answers.roleId,
-						answers.managerId,
-						() => {
-							startProgram();
-						}
-					);
+				let rTitle = [];
+				let eManager = [];
+				
+				listRole.forEach(({ id, title }) => {
+					rTitle.push(id + " " + title);
+				});
+				listEmploy.forEach(({ first_name, last_name }) => {
+					eManager.push(first_name + " " + last_name);
+				});
+				eManager.push("none");
+
+				addEmp(rTitle, eManager, () => {
+					startProgram();
 				});
 				break;
 			case "Update employee role":
@@ -123,7 +127,7 @@ const startProgram = () => {
 
 				updateEmpRole(eName, rName, () => {
 					startProgram();
-				})
+				});
 				break;
 			default:
 				connection.end();
