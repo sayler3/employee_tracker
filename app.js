@@ -6,6 +6,7 @@ const view = require("./js/view");
 const add = require("./js/add");
 const update = require("./js/update");
 const questions = require("./js/questions");
+const { updateEmpRole } = require("./js/update");
 
 //Starting connection to mysql
 const connection = mysql.createConnection({
@@ -120,31 +121,9 @@ const startProgram = () => {
 					rName.push(id + " " + title);
 				});
 
-				inquirer
-					.prompt([
-						{
-							name: "selectEmployee",
-							type: "list",
-							choices: eName,
-							message: "Choose the employee whos role needs to be updated:",
-						},
-						{
-							name: "newRole",
-							type: "list",
-							choices: rName,
-							message: "What is the new role for the selected empoyee ?",
-						},
-					])
-					.then((answers) => {
-						// Storing id's for later use
-						let employeeID = answers.selectEmployee.split(" ");
-						let eID = employeeID[0];
-						let roleId = answers.newRole.split(" ");
-						let rID = roleId[0];
-						update.UpdateRole(rID, eID, () => {
-							startProgram();
-						});
-					});
+				updateEmpRole(eName, rName, () => {
+					startProgram();
+				})
 				break;
 			default:
 				connection.end();

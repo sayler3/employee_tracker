@@ -66,20 +66,20 @@ const questions = {
 		},
 	],
 
-	updateEmpoyeeRole: [
-		{
-			name: "selectEmployee",
-			type: "list",
-			choices: eName,
-			message: "Choose the employee whos role needs to be updated:",
-		},
-		{
-			name: "newRole",
-			type: "list",
-			choices: rName,
-			message: "What is the new role for the selected empoyee ?",
-		},
-	],
+	// updateEmpoyeeRole: [
+	// 	{
+	// 		name: "selectEmployee",
+	// 		type: "list",
+	// 		choices: eName,
+	// 		message: "Choose the employee whos role needs to be updated:",
+	// 	},
+	// 	{
+	// 		name: "newRole",
+	// 		type: "list",
+	// 		choices: rName,
+	// 		message: "Choose the new role for the selected empoyee:",
+	// 	},
+	// ],
 };
 
 module.exports = questions;
