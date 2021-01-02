@@ -69,21 +69,16 @@ const questions = {
 	updateEmpoyeeRole: [
 		{
 			name: "selectEmployee",
-			type: "rawlist",
-			choices() {
-				const choiceArray = [];
-				results.forEach(({ first_name, last_name }) => {
-					choiceArray.push(first_name+" "+last_name);
-				});
-				return choiceArray;
-			},
+			type: "list",
+			choices: eName,
 			message: "Choose the employee whos role needs to be updated:",
-        },
-        {
-            name: 'newRole',
-            type: 'input',
-            message: 'What is the new role for the selected empoyee ?',
-        },
+		},
+		{
+			name: "newRole",
+			type: "list",
+			choices: rName,
+			message: "What is the new role for the selected empoyee ?",
+		},
 	],
 };
 
