@@ -44,4 +44,46 @@ module.exports = {
 				);
 			});
 	},
+
+	updateEmpManager: function (empName, mName, callBack) {
+		inquirer
+			.prompt([
+				{
+					name: "selectEmployee",
+					type: "list",
+					choices: empName,
+					message: "Choose the employee whos manager needs to be updated:",
+				},
+				{
+					name: "selectManager",
+					type: "list",
+					choices: mName,
+					message: "Choose a new manager for the selected empoyee:",
+				},
+			])
+			.then((answers) => {
+				// Storing id's for later use
+                let employeeID = answers.selectEmployee.split(" ");
+                let managerID = answers.selectManager.split(" ");
+                let mN = answers.selectManager;
+				let eID = employeeID[0];
+                let mID = managerID[0];
+                
+                if (mN === "no manager") {
+					mN = null;
+				}else {
+					mN = mID;
+				}
+
+				connection.query(
+					"UPDATE employee SET manager_id = ? WHERE id = ?;",
+					[mN, eID],
+					(err, results) => {
+						if (err) throw err;
+						console.log("New manager has been updated!");
+						callBack(results);
+					}
+				);
+			});
+	},
 };

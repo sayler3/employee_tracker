@@ -6,7 +6,7 @@ const view = require("./js/view");
 const add = require("./js/add");
 const update = require("./js/update");
 const questions = require("./js/questions");
-const { updateEmpRole } = require("./js/update");
+const { updateEmpRole, updateEmpManager } = require("./js/update");
 const { addEmp } = require("./js/add");
 const { deleteEmp, deleteRole, deleteDept } = require("./js/delete");
 
@@ -114,6 +114,20 @@ const startProgram = async () => {
 				updateEmpRole(eName, rName, () => {
 					startProgram();
 				});
+				break;
+			case "Update employee manager":
+				let empName = [];
+				let mName = [];
+
+				listEmploy.forEach(({ id, first_name, last_name }) => {
+					empName.push(id + " " + first_name + " " + last_name);
+					mName.push(id + " " + first_name + " " + last_name);
+				});
+				mName.push("no manager");
+				updateEmpManager(empName, mName, () => {
+					startProgram();
+				})
+
 				break;
 			case "Delete employee":
 				let eeName = [];

@@ -12,6 +12,7 @@ const questions = {
 				"Add role",
 				"Add employee",
 				"Update employee role",
+				"Update employee manager",
 				"Delete employee",
 				"Delete role",
 				"Delete department",
