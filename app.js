@@ -36,30 +36,15 @@ connection.connect((err) => {
 // Varibles for arrays that hold data to be used later
 let listEmploy = [];
 let listRole = [];
-
-// Functions to get data for storage in varible
-const getEmployees = () => {
-	connection.query("SELECT * FROM employee;", (err, results) => {
-		if (err) throw err;
-		results.forEach(({ id, first_name, last_name, role_id, manager_id }) => {
-			listEmploy.push({ id, first_name, last_name, role_id, manager_id });
-		});
-	});
-};
-getEmployees();
-
-const getRoles = () => {
-	connection.query("SELECT * FROM role;", (err, results) => {
-		if (err) throw err;
-		results.forEach(({ id, title, salary, department_id }) => {
-			listRole.push({ id, title, salary, department_id });
-		});
-	});
-};
-getRoles();
+let listDept = [];
 
 // Start of program run
-const startProgram = () => {
+const startProgram = async () => {
+	// Putting data into array for latter use
+	listEmploy = await getEmployees();
+	listRole = await getRoles();
+	listDept = await getDept();
+
 	inquirer.prompt(questions.startMenu).then(({ action }) => {
 		console.log(action);
 		switch (action) {
@@ -100,7 +85,7 @@ const startProgram = () => {
 			case "Add employee":
 				let rTitle = [];
 				let eManager = [];
-				
+
 				listRole.forEach(({ id, title }) => {
 					rTitle.push(id + " " + title);
 				});
@@ -135,4 +120,35 @@ const startProgram = () => {
 				break;
 		}
 	});
+};
+
+// Functions to get data for storage in varible
+const getEmployees = () => {
+	connection.query("SELECT * FROM employee;", (err, results) => {
+		if (err) throw err;
+		results.forEach(({ id, first_name, last_name, role_id, manager_id }) => {
+			listEmploy.push({ id, first_name, last_name, role_id, manager_id });
+		});
+	});
+	return listEmploy;
+};
+
+const getRoles = () => {
+	connection.query("SELECT * FROM role;", (err, results) => {
+		if (err) throw err;
+		results.forEach(({ id, title, salary, department_id }) => {
+			listRole.push({ id, title, salary, department_id });
+		});
+	});
+	return listRole;
+};
+
+const getDept = () => {
+	connection.query("SELECT * FROM department;", (err, results) => {
+		if (err) throw err;
+		results.forEach(({ id, name }) => {
+			listDept.push({ id, name });
+		});
+	});
+	return listDept;
 };
