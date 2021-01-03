@@ -56,8 +56,34 @@ module.exports = {
 					[rID],
 					(err, results) => {
 						if (err) throw err;
-                        console.log("Role has been deleted!");
-                        callBack(results);
+						console.log("Role has been deleted!");
+						callBack(results);
+					}
+				);
+			});
+	},
+
+	deleteDept: function (dName, callBack) {
+		inquirer
+			.prompt([
+				{
+					name: "selectD",
+					type: "list",
+					choices: dName,
+					message: "Select the department that needs to be removed:",
+				},
+			])
+			.then((answers) => {
+				let deptId = answers.selectD.split(" ");
+				let dID = deptId[0];
+
+				connection.query(
+					"DELETE FROM department WHERE id = ?;",
+					[dID],
+					(err, results) => {
+						if (err) throw err;
+						console.log("Department has been deleted!");
+						callBack(results);
 					}
 				);
 			});
