@@ -8,7 +8,7 @@ const update = require("./js/update");
 const questions = require("./js/questions");
 const { updateEmpRole } = require("./js/update");
 const { addEmp } = require("./js/add");
-const { deleteEmp } = require("./js/delete");
+const { deleteEmp, deleteRole } = require("./js/delete");
 
 //Starting connection to mysql
 const connection = mysql.createConnection({
@@ -122,6 +122,16 @@ const startProgram = async () => {
 					eeName.push(id + " " + first_name + " " + last_name);
 				});
 				deleteEmp(eeName, () => {
+					startProgram();
+				});
+				break;
+			case "Delete role":
+				let rrName = [];
+
+				listRole.forEach(({ id, title }) => {
+					rrName.push(id + " " + title);
+				});
+				deleteRole(rrName, () => {
 					startProgram();
 				});
 				break;
