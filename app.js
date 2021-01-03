@@ -40,7 +40,7 @@ let listDept = [];
 
 // Start of program run
 const startProgram = async () => {
-	// Putting data into array for latter use
+	// Putting data into array for later use
 	listEmploy = await getEmployees();
 	listRole = await getRoles();
 	listDept = await getDept();
@@ -122,7 +122,7 @@ const startProgram = async () => {
 	});
 };
 
-// Functions to get data for storage in varible
+// Functions to get data for storage in varibles
 const getEmployees = () => {
 	connection.query("SELECT * FROM employee;", (err, results) => {
 		if (err) throw err;
