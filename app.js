@@ -91,8 +91,8 @@ const startProgram = async () => {
 				listRole.forEach(({ id, title }) => {
 					rTitle.push(id + " " + title);
 				});
-				listEmploy.forEach(({ first_name, last_name }) => {
-					eManager.push(first_name + " " + last_name);
+				listEmploy.forEach(({ id, first_name, last_name }) => {
+					eManager.push(id+" "+first_name + " " + last_name);
 				});
 				eManager.push("none");
 
