@@ -117,6 +117,7 @@ const startProgram = async () => {
 				});
 				break;
 			case "Update employee manager":
+				// Storing employee and manager name to use for inquirer choices
 				let empName = [];
 				let mName = [];
 
@@ -125,22 +126,26 @@ const startProgram = async () => {
 					mName.push(id + " " + first_name + " " + last_name);
 				});
 				mName.push("no manager");
+
 				updateEmpManager(empName, mName, () => {
 					startProgram();
 				});
 
 				break;
 			case "Delete employee":
+				// Storing employee name to use for inquirer choices
 				let eeName = [];
 
 				listEmploy.forEach(({ id, first_name, last_name }) => {
 					eeName.push(id + " " + first_name + " " + last_name);
 				});
+
 				deleteEmp(eeName, () => {
 					startProgram();
 				});
 				break;
 			case "Delete role":
+				// Storing  role name to use for inquirer choices
 				let rrName = [];
 
 				listRole.forEach(({ id, title }) => {
@@ -151,21 +156,25 @@ const startProgram = async () => {
 				});
 				break;
 			case "Delete department":
+				// Storing department name to use for inquirer choices
 				let dName = [];
 
 				listDept.forEach(({ id, name }) => {
 					dName.push(id + " " + name);
 				});
+
 				deleteDept(dName, () => {
 					startProgram();
 				});
 				break;
 			case "View budget by department":
+				// Storing department name to use for inquirer choices
 				let dList = [];
 
 				listDept.forEach(({ id, name }) => {
 					dList.push(id + " " + name);
 				});
+				
 				viewDepartmentBudget(dList, () => {
 					startProgram();
 				});

@@ -47,46 +47,6 @@ const questions = {
 			message: "What is the name of the department ?",
 		},
 	],
-
-	// addNewEmployee: [
-	// 	{
-	// 		name: "firstName",
-	// 		type: "input",
-	// 		message: "Enter first name:",
-	// 	},
-	// 	{
-	// 		name: "lastName",
-	// 		type: "input",
-	// 		message: "Enter last name:",
-	// 	},
-	// 	{
-	// 		name: "roleId",
-	// 		type: "list",
-	// 		choices: rTitle,
-	// 		message: "Select a role:",
-	// 	},
-	// 	{
-	// 		name: "mangerId",
-	// 		type: "list",
-	// 		choices: eManager,
-	// 		message: "Select a Manager",
-	// 	},
-	// ],
-
-	// updateEmpoyeeRole: [
-	// 	{
-	// 		name: "selectEmployee",
-	// 		type: "list",
-	// 		choices: eName,
-	// 		message: "Choose the employee whos role needs to be updated:",
-	// 	},
-	// 	{
-	// 		name: "newRole",
-	// 		type: "list",
-	// 		choices: rName,
-	// 		message: "Choose the new role for the selected empoyee:",
-	// 	},
-	// ],
 };
 
 module.exports = questions;
