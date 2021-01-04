@@ -6,6 +6,7 @@ const view = require("./js/view");
 const add = require("./js/add");
 const update = require("./js/update");
 const questions = require("./js/questions");
+const { viewDepartmentBudget } = require("./js/view");
 const { updateEmpRole, updateEmpManager } = require("./js/update");
 const { addEmp } = require("./js/add");
 const { deleteEmp, deleteRole, deleteDept } = require("./js/delete");
@@ -126,7 +127,7 @@ const startProgram = async () => {
 				mName.push("no manager");
 				updateEmpManager(empName, mName, () => {
 					startProgram();
-				})
+				});
 
 				break;
 			case "Delete employee":
@@ -156,6 +157,16 @@ const startProgram = async () => {
 					dName.push(id + " " + name);
 				});
 				deleteDept(dName, () => {
+					startProgram();
+				});
+				break;
+			case "View budget by department":
+				let dList = [];
+
+				listDept.forEach(({ id, name }) => {
+					dList.push(id + " " + name);
+				});
+				viewDepartmentBudget(dList, () => {
 					startProgram();
 				});
 				break;

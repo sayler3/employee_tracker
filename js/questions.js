@@ -16,6 +16,7 @@ const questions = {
 				"Delete employee",
 				"Delete role",
 				"Delete department",
+				"View budget by department",
 				"EXIT",
 			],
 		},
