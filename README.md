@@ -6,11 +6,11 @@
 
 This is a node application for employee content management utilizing MySQL for a database. By using the command-line an employeer is able to do the following:
 
-- Add departments, roles, employees
+- Add departments, roles, and employees
 
-- View departments, roles, employees
+- View departments, roles, and employees
 
-- Update employee roles, employee managers
+- Update employee roles and employee managers
 
 - Delete departments, roles, and employees
 
