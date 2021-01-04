@@ -24,7 +24,7 @@ The following shows database schema:
 
 ## Demo video
 
-![demo of application](assets/demoVideo.gif)
+![demo of application](assets/demoVid.gif)
 
 
 ## Table of Contents
