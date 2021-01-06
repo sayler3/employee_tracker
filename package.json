@@ -11,6 +11,9 @@
     "heroku",
     "express"
   ],
+  "directories": {
+    "js": "js"
+  },
   "author": "Samuel Ayler",
   "license": "ISC",
   "dependencies": {
