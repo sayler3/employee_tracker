@@ -10,6 +10,9 @@ const { viewDepartmentBudget } = require("./js/view");
 const { updateEmpRole, updateEmpManager } = require("./js/update");
 const { addEmp } = require("./js/add");
 const { deleteEmp, deleteRole, deleteDept } = require("./js/delete");
+const app = express();
+
+app.listen(process.env.PORT || 8080);
 
 //Starting connection to mysql
 // const connection = mysql.createConnection({
