@@ -1,13 +1,17 @@
 {
   "name": "employeeTracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Application that interact with information stored in an employee database.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "Samuel Ayler",
   "license": "ISC",
   "dependencies": {
     "console.table": "^0.10.0",
