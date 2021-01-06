@@ -4,7 +4,7 @@
   "description": "Application that interact with information stored in an employee database.",
   "main": "app.js",
   "engines": {
-    "node": "14.x"
+    "node": "14.15.1"
   },
   "scripts": {
     "start": "node app.js"
