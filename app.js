@@ -12,13 +12,7 @@ const { addEmp } = require("./js/add");
 const { deleteEmp, deleteRole, deleteDept } = require("./js/delete");
 
 //Starting connection to mysql
-const connection = mysql.createConnection({
-	host: "localhost",
-	port: 3306,
-	user: "root",
-	password: "password",
-	database: "employees_db",
-});
+const connection = mysql.createConnectionmysql.createConnection(process.env.JAWSDB_URL);
 
 connection.connect((err) => {
 	if (err) throw err;
