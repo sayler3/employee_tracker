@@ -12,7 +12,7 @@ const { addEmp } = require("./js/add");
 const { deleteEmp, deleteRole, deleteDept } = require("./js/delete");
 
 //Starting connection to mysql
-const connection = mysql.createConnectionmysql.createConnection(process.env.JAWSDB_URL);
+const connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 connection.connect((err) => {
 	if (err) throw err;
