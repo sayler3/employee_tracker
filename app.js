@@ -12,6 +12,14 @@ const { addEmp } = require("./js/add");
 const { deleteEmp, deleteRole, deleteDept } = require("./js/delete");
 
 //Starting connection to mysql
+// const connection = mysql.createConnection({
+// 	host: "localhost",
+// 	port: 3306,
+// 	user: "root",
+// 	password: "password",
+// 	database: "employees_db",
+// });
+//Starting connecting for heroku
 const connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 connection.connect((err) => {
