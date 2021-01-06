@@ -4,29 +4,20 @@ const figlet = require("figlet");
 const cTable = require("console.table");
 const view = require("./js/view");
 const add = require("./js/add");
-const update = require("./js/update");
 const questions = require("./js/questions");
 const { viewDepartmentBudget } = require("./js/view");
 const { updateEmpRole, updateEmpManager } = require("./js/update");
 const { addEmp } = require("./js/add");
 const { deleteEmp, deleteRole, deleteDept } = require("./js/delete");
-const express = require('express');
-
-const app = express();
-
-app.listen(process.env.PORT || 8080);
-app.get('/');
 
 //Starting connection to mysql
-// const connection = mysql.createConnection({
-// 	host: "localhost",
-// 	port: 3306,
-// 	user: "root",
-// 	password: "password",
-// 	database: "employees_db",
-// });
-//Starting connecting for heroku
-const connection = mysql.createConnection(process.env.JAWSDB_URL);
+const connection = mysql.createConnection({
+	host: "localhost",
+	port: 3306,
+	user: "root",
+	password: "password",
+	database: "employees_db",
+});
 
 connection.connect((err) => {
 	if (err) throw err;
