@@ -15,7 +15,7 @@ const express = require('express');
 const app = express();
 
 app.listen(process.env.PORT || 8080);
-app.get('*', function(req, res)
+app.get('/');
 
 //Starting connection to mysql
 // const connection = mysql.createConnection({
